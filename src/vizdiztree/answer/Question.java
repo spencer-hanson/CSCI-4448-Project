@@ -1,11 +1,11 @@
 package vizdiztree.answer;
-import java.util.*;
 
+import java.util.*;
 public class Question {
 	private String title;
 	private ArrayList<Answer> lista;
 
-	public Question(String _title, ArrayList<Answer> _lista){
+	public Question(String _title, ArrayList<String> _lista){
 		setTitle(_title);
 		addAnswers(_lista);
 	}
@@ -20,7 +20,7 @@ public class Question {
 
 	public void addAnswers(ArrayList<String> _lista){
 		// for(String a: _lista){
-			
+
 		// }
 	}
 
