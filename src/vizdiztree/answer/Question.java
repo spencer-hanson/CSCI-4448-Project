@@ -3,7 +3,7 @@ package vizdiztree.answer;
 import java.util.*;
 public class Question {
 	private String title;
-	private ArrayList<Answer> lista;
+	private ArrayList<Answer> lista= new ArrayList<>();
 
 	public Question(String _title, ArrayList<String> _lista){
 		setTitle(_title);
@@ -20,7 +20,8 @@ public class Question {
 
 	private void addAnswers(ArrayList<String> _lista){
 		 for(String a: _lista){
-			lista.add(new Answer(a));
+		     Answer ans= new Answer(a);
+			lista.add(ans);
 		 }
 	}
 
@@ -32,5 +33,7 @@ public class Question {
 	public Question convertQuestion(){
 		return null;
 	}
+
+
 
 }
