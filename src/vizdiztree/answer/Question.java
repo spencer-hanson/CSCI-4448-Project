@@ -18,17 +18,17 @@ public class Question {
 		return this.title;
 	}
 
-	public void addAnswers(ArrayList<String> _lista){
-		// for(String a: _lista){
-
-		// }
+	private void addAnswers(ArrayList<String> _lista){
+		 for(String a: _lista){
+			lista.add(new Answer(a));
+		 }
 	}
 
 	public ArrayList<Answer> getAnswers(){
 		return this.lista;
 	}
 
-	//TODO: Need to check specific conversion details for desicion tree.
+	//TODO: Need to check specific conversion details for decision tree.
 	public Question convertQuestion(){
 		return null;
 	}
