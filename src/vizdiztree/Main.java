@@ -1,6 +1,6 @@
 package vizdiztree;
-import vizdiztree.answer.Answer;
-import vizdiztree.answer.Question;
+import vizdiztree.answer.*;
+import vizdiztree.survey.*;
 
 import java.util.ArrayList;
 
@@ -27,5 +27,24 @@ public class Main {
         q.setTitle("House Price?");
         System.out.println(q.getTitle());
 
+        //Testing Survey Class methods
+        Survey s= new Survey("Should I Buy this Car?");
+        System.out.println(s.getTitle());
+        s.setTitle("Should I buy this House?");
+        System.out.println(s.getTitle());
+        s.addQuestion(q.getTitle(),ans1);
+
+        ArrayList<String> ans2= new ArrayList<>();
+        ans2.add("Yes");
+        ans2.add("No");
+        s.addQuestion("Is it new?", ans2);
+
+        for(Question q1: s.getQuestions()){
+            System.out.println("Question: "+ q1.getTitle());
+            System.out.println("Possible Answers ");
+            for(Answer a: q1.getAnswers()){
+                System.out.println( a.getTitle());
+            }
+        }
     }
 }
