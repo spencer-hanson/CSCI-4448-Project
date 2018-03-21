@@ -38,6 +38,7 @@ public class Survey {
 
         ArrayList<SurveyResponse> r=new ArrayList<>();
         while(i<10) {
+            r.add(new SurveyResponse());
             for (Question q : questions) {
                 Random rand = new Random();
                 ArrayList<Answer> alist = q.getAnswers();

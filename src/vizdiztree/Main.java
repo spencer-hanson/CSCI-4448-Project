@@ -46,5 +46,16 @@ public class Main {
                 System.out.println( a.getTitle());
             }
         }
+
+        //Test take survey
+        for(Question q2: s.getQuestions()){
+            System.out.print(q2.getTitle()+" ");
+            System.out.println("");
+        }
+        ArrayList<SurveyResponse> r=s.takeSurvey();
+        for(SurveyResponse response: r){
+            System.out.println(response.getResponses());
+        }
+
     }
 }
