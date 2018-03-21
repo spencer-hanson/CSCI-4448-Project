@@ -53,7 +53,15 @@ public class Main {
             System.out.println("");
         }
         ArrayList<SurveyResponse> r=s.takeSurvey();
+        boolean flag=true;
         for(SurveyResponse response: r){
+            if(flag){
+                response.addResponse("Yes");
+            }
+            else{
+                response.addResponse("No");
+            }
+            flag=!flag;
             System.out.println(response.getResponses());
         }
 
