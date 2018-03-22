@@ -1,5 +1,6 @@
 package com.mycompany.app;
-import quickdt.*;
+package quickdt;
+//import quickdt.*;
 public class App
 {
 	//private void 
