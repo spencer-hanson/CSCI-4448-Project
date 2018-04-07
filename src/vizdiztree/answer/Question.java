@@ -1,11 +1,10 @@
-package vizdiztree.answer;
-
+package vizdiztree.answer.Answer
 import java.util.*;
 public class Question {
 	private String title;
-	private ArrayList<Answer> lista= new ArrayList<>();
+	private ArrayList<Answer> lista;
 
-	public Question(String _title, ArrayList<String> _lista){
+	public Question(String _title, ArrayList<Answer> _lista){
 		setTitle(_title);
 		addAnswers(_lista);
 	}
@@ -18,22 +17,19 @@ public class Question {
 		return this.title;
 	}
 
-	private void addAnswers(ArrayList<String> _lista){
-		 for(String a: _lista){
-		     Answer ans= new Answer(a);
-			lista.add(ans);
-		 }
+	public void addAnswers(ArrayList<String> _lista){
+		// for(String a: _lista){
+
+		// }
 	}
 
 	public ArrayList<Answer> getAnswers(){
 		return this.lista;
 	}
 
-	//TODO: Need to check specific conversion details for decision tree.
+	//TODO: Need to check specific conversion details for desicion tree.
 	public Question convertQuestion(){
 		return null;
 	}
-
-
 
 }
