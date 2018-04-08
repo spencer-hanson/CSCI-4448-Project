@@ -56,6 +56,9 @@ public class Survey {
 
     //TODO: Need to check specific conversion details for decision tree.
     public Survey convertSurvey(){
+         for(Question q: questions){
+           q.convertQuestion();
+         }
         return null;
     }
 }

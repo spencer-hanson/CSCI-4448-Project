@@ -1,5 +1,5 @@
 package vizdiztree.answer;
-
+import vizdiztree.answer.Answer;
 import java.util.*;
 public class Question {
 	private String title;
