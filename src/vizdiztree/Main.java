@@ -65,5 +65,7 @@ public class Main {
             System.out.println(response.getResponses());
         }
 
+        System.out.println(s.getKeys());
+
     }
 }

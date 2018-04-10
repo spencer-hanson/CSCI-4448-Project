@@ -8,9 +8,13 @@ public class Survey {
     private String title;
     private ArrayList<SurveyResponse> responses= new ArrayList<>();
     private ArrayList<Question> questions= new ArrayList<>();
+    private HashMap<String, Integer> keys= new HashMap<>();
 
     public Survey(String _title){
+
         setTitle(_title);
+        keys.put("Yes",1);
+        keys.put("No",0);
     }
 
     public void setTitle(String _title){
@@ -31,6 +35,14 @@ public class Survey {
 
     public ArrayList<SurveyResponse> getResponses() {
         return responses;
+    }
+
+    public HashMap<String, Integer> getKeys() {
+        return keys;
+    }
+
+    public void addKey(String answer, Integer id){
+        keys.put(answer,id);
     }
 
     public ArrayList<SurveyResponse> takeSurvey(){
