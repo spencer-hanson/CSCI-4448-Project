@@ -13,3 +13,11 @@ services:
     ports:
         - "27017:27017"
     command: "mongod --smallfiles" 
+  tomcat:
+    image: "tomcat"
+    hostname: "OOPTomcat"
+    container_name: "oop-tomcat"
+    volumes:
+      - "./bin/artifacts/VizDizTree/:/usr/local/tomcat/webapps/"
+    ports:
+      - "8080:8080"
