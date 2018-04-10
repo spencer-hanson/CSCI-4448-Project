@@ -41,9 +41,6 @@ public class Survey {
         return keys;
     }
 
-    public void addKey(String answer, Integer id){
-        keys.put(answer,id);
-    }
 
     public ArrayList<SurveyResponse> takeSurvey(){
         int i=0;
@@ -67,10 +64,16 @@ public class Survey {
     }
 
     //TODO: Need to check specific conversion details for decision tree.
-    public Survey convertSurvey(){
+    public HashMap<String, Integer> convertSurvey(){
+        int count=2;
          for(Question q: questions){
-           q.convertQuestion();
+           for(Answer a: q.getAnswers()){
+               if(!keys.containsKey(a.getTitle())) {
+                   keys.put(a.getTitle(), count);
+                   count=count+1;
+               }
+           }
          }
-        return null;
+        return keys;
     }
 }

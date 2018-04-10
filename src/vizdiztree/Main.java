@@ -64,7 +64,7 @@ public class Main {
             flag=!flag;
             System.out.println(response.getResponses());
         }
-
+        s.convertSurvey();
         System.out.println(s.getKeys());
 
     }
