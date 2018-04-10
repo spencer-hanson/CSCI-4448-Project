@@ -33,10 +33,7 @@ public class Question {
 
 
 
-	//TODO: Need to check specific conversion details for decision tree.
-	public Question convertQuestion(){
-		return null;
-	}
+
 
 
 
