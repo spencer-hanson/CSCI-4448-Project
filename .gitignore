@@ -1,4 +1,6 @@
 bin/
+mongo/*
 .idea
 .DS_Store
+*.iml
 .class

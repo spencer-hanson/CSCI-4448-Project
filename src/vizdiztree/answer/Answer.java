@@ -15,8 +15,5 @@ public class Answer {
 		return this.title;
 	}
 
-	//TODO: Need to check specific conversion details for desicion tree.
-	public Answer convertAnswer(){
-		return null;
-	}
+
 }
