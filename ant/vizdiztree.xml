@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="csci-4448-project" default="all">
+  
+  
+  <property file="vizdiztree.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+    <include name="*.swc"/>
+    <include name="*.war"/>
+    <include name="*.ane"/>
+    <include name="*.zip"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.7" value="${jdk.home.1.7}/bin"/>
+  <path id="jdk.classpath.1.7">
+    <fileset dir="${jdk.home.1.7}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+      <include name="jre/lib/htmlconverter.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxrt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="lib/ant-javafx.jar"/>
+      <include name="lib/dt.jar"/>
+      <include name="lib/javafx-doclet.jar"/>
+      <include name="lib/javafx-mx.jar"/>
+      <include name="lib/jconsole.jar"/>
+      <include name="lib/sa-jdi.jar"/>
+      <include name="lib/tools.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.7}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.7}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.7"/>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module CSCI-4448-Project -->
+  
+  <dirname property="module.csci-4448-project.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.csci-4448-project" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.csci-4448-project" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.csci-4448-project" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.csci-4448-project" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="csci-4448-project.output.dir" value="${module.csci-4448-project.basedir}/bin/production/CSCI-4448-Project"/>
+  <property name="csci-4448-project.testoutput.dir" value="${module.csci-4448-project.basedir}/bin/test/CSCI-4448-Project"/>
+  
+  <path id="csci-4448-project.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="csci-4448-project.module.production.classpath">
+    <path refid="${module.jdk.classpath.csci-4448-project}"/>
+  </path>
+  
+  <path id="csci-4448-project.runtime.production.module.classpath">
+    <pathelement location="${csci-4448-project.output.dir}"/>
+  </path>
+  
+  <path id="csci-4448-project.module.classpath">
+    <path refid="${module.jdk.classpath.csci-4448-project}"/>
+    <pathelement location="${csci-4448-project.output.dir}"/>
+  </path>
+  
+  <path id="csci-4448-project.runtime.module.classpath">
+    <pathelement location="${csci-4448-project.testoutput.dir}"/>
+    <pathelement location="${csci-4448-project.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.csci-4448-project">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.csci-4448-project">
+    <patternset refid="excluded.from.module.csci-4448-project"/>
+  </patternset>
+  
+  <path id="csci-4448-project.module.sourcepath">
+    <dirset dir="${module.csci-4448-project.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.csci-4448-project" depends="compile.module.csci-4448-project.production,compile.module.csci-4448-project.tests" description="Compile module CSCI-4448-Project"/>
+  
+  <target name="compile.module.csci-4448-project.production" depends="register.custom.compilers" description="Compile module CSCI-4448-Project; production classes">
+    <mkdir dir="${csci-4448-project.output.dir}"/>
+    <javac2 destdir="${csci-4448-project.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.csci-4448-project}/javac">
+      <compilerarg line="${compiler.args.csci-4448-project}"/>
+      <bootclasspath refid="csci-4448-project.module.bootclasspath"/>
+      <classpath refid="csci-4448-project.module.production.classpath"/>
+      <src refid="csci-4448-project.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.csci-4448-project"/>
+    </javac2>
+    
+    <copy todir="${csci-4448-project.output.dir}">
+      <fileset dir="${module.csci-4448-project.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.csci-4448-project.tests" depends="register.custom.compilers,compile.module.csci-4448-project.production" description="compile module CSCI-4448-Project; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.csci-4448-project" description="cleanup module">
+    <delete dir="${csci-4448-project.output.dir}"/>
+    <delete dir="${csci-4448-project.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.csci-4448-project" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.csci-4448-project" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.vizdiztree" value="${basedir}/bin/artifacts/VizDizTree"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.VizDizTree.war" value="${artifacts.temp.dir}/VizDizTree.war"/>
+  </target>
+  
+  <target name="artifact.vizdiztree" depends="init.artifacts, compile.module.csci-4448-project" description="Build &#39;VizDizTree&#39; artifact">
+    <property name="artifact.temp.output.vizdiztree" value="${artifacts.temp.dir}/VizDizTree"/>
+    <mkdir dir="${artifact.temp.output.vizdiztree}"/>
+    <zip destfile="${temp.jar.path.VizDizTree.war}">
+      <zipfileset file="${basedir}/META-INF/MANIFEST.MF" prefix="META-INF"/>
+      <zipfileset dir="${csci-4448-project.output.dir}" prefix="WEB-INF/classes"/>
+      <zipfileset dir="${basedir}/tomcat"/>
+    </zip>
+    <copy file="${temp.jar.path.VizDizTree.war}" tofile="${artifact.temp.output.vizdiztree}/VizDizTree.war"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.vizdiztree" description="Build all artifacts">
+    <mkdir dir="${artifact.output.vizdiztree}"/>
+    <copy todir="${artifact.output.vizdiztree}">
+      <fileset dir="${artifact.temp.output.vizdiztree}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
