@@ -15,43 +15,17 @@
   <div class="column"></div>
 </div>
 
-
-
-<!-- <div class="container">
+ <div class="container">
+ <img src="img/plus.png" style="width:100px;height:100px; " class="center">
     <form>
-            
             <div>
-                <form>
-                    Username:<br>
-                    <input type="text" name="username"><br>
-                    Password:<br>
-                    <input type="password" name="psw">
-                </form>
-            </div>
-
-           
-            <div>
-
-                <input type="submit" value="Login">
-
-                <form action="signup.jsp">
-                    <input type="submit" value="Sign Up">
+                <form action="takesurvery.jsp">
+                    <input type="submit" value="New Survey">
                 </form>
             </div>
     </form>
-</div>-->
+</div>
 <style>
-    .column {
-        float: left;
-        width: 50%;
-    }
-
-    /* Clear floats after the columns */
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
     .container {
         text-align: center;
         margin-top: 3rem;

@@ -3,7 +3,8 @@ import graphviz
 import numpy as np
 import scipy
 import csv
-# list of possible answers to the main question: should you lend your car or not
+
+# list of possible answers to the main question
 responses = {
     "yes" : 5,
     "no" : 6
@@ -33,6 +34,9 @@ def parse_date(filename):
 
 
 # convert the data into numbers so that we can use the sklearn library to train the data
+
+#TODO Change conversions from AI problem set to conversions from Taylor's stuff
+
 def convert_data(data):
     response_data = []
     question_data = []
@@ -40,19 +44,19 @@ def convert_data(data):
         raw_features = []
         for item in feature:
             item = item.strip()
-            if item == "yes" or item == "no":  # answer to Do you need car at time of loan? and other yes/no questions
+            if item == "yes" or item == "no":
                 if item == "yes":
                     raw_features.append(0)  # 0 for yes
                 else:
                     raw_features.append(1)  # 1 for no
-            elif item == "short" or item == "medium" or item == "long":  # case for duration of friendship
+            elif item == "short" or item == "medium" or item == "long":
                 if item == "short":
                     raw_features.append(0)  # 0 for short
                 elif item == "medium":
                     raw_features.append(1)  # 1 for medium
                 elif item == "long":
                     raw_features.append(2)  # 2 for long
-            elif item == "0" or item == "some" or item == "3":  # case for # of tickets
+            elif item == "0" or item == "some" or item == "3":
                 if item == "0":
                     raw_features.append(0)  # 0 for 0 tickets
                 elif item == "some":
