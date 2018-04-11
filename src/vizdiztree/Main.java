@@ -66,6 +66,12 @@ public class Main {
             flag=!flag;
             System.out.println(response.getResponses());
         }
+        s.createKeys();
+        System.out.println(s.getKeys());
+
+        System.out.println(s.convertResponses());
+
+
 
     }
 }

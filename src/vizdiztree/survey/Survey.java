@@ -7,10 +7,16 @@ import java.util.*;
 public class Survey {
     private String title;
     private ArrayList<SurveyResponse> responses= new ArrayList<>();
+    private ArrayList<ArrayList<Integer>> convertedResponses=new ArrayList<>();
+
     private ArrayList<Question> questions= new ArrayList<>();
+    private HashMap<String, Integer> keys= new HashMap<>();
 
     public Survey(String _title){
+
         setTitle(_title);
+        keys.put("Yes",1);
+        keys.put("No",0);
     }
 
     public void setTitle(String _title){
@@ -33,32 +39,57 @@ public class Survey {
         return responses;
     }
 
+    public HashMap<String, Integer> getKeys() {
+        return keys;
+    }
+
+
     public ArrayList<SurveyResponse> takeSurvey(){
         int i=0;
 
-        ArrayList<SurveyResponse> r=new ArrayList<>();
         while(i<10) {
-            r.add(new SurveyResponse());
+            responses.add(new SurveyResponse());
             for (Question q : questions) {
                 Random rand = new Random();
                 ArrayList<Answer> alist = q.getAnswers();
                 int index = rand.nextInt(alist.size());
                 Answer a = alist.get(index);
-                SurveyResponse newR= r.get(i);
+                SurveyResponse newR= responses.get(i);
                 newR.addResponse(a.getTitle());
-                r.set(i,newR);
+                responses.set(i,newR);
             }
             i = i + 1;
         }
-        return r;
+        return getResponses();
 
     }
 
-    //TODO: Need to check specific conversion details for decision tree.
-    public Survey convertSurvey(){
+
+    public void createKeys(){
+        int count=2;
          for(Question q: questions){
-           q.convertQuestion();
+           for(Answer a: q.getAnswers()){
+               if(!keys.containsKey(a.getTitle())) {
+                   keys.put(a.getTitle(), count);
+                   count=count+1;
+               }
+           }
          }
-        return null;
+
+    }
+
+    //Converts all responses to integers given the hashMap keys
+    public ArrayList<ArrayList<Integer>> convertResponses(){
+
+        for(SurveyResponse r: responses){
+
+            ArrayList<Integer> conR=new ArrayList<>();
+            for(String title: r.getResponses()){
+
+                conR.add(keys.get(title));
+            }
+            convertedResponses.add(conR);
+        }
+        return convertedResponses;
     }
 }

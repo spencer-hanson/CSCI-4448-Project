@@ -5,9 +5,11 @@ public class Question {
 	private String title;
 	private ArrayList<Answer> lista= new ArrayList<>();
 
+
 	public Question(String _title, ArrayList<String> _lista){
 		setTitle(_title);
 		addAnswers(_lista);
+
 	}
 
 	public void setTitle(String _title){
@@ -29,10 +31,9 @@ public class Question {
 		return this.lista;
 	}
 
-	//TODO: Need to check specific conversion details for decision tree.
-	public Question convertQuestion(){
-		return null;
-	}
+
+
+
 
 
 
