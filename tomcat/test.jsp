@@ -7,7 +7,6 @@
 <%=  "Hello World from JSP AA" %>
 
 <%= "AA" + Main.getHello() %>
-
 <br/>
 
 </body>
