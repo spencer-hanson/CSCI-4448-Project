@@ -1,8 +1,8 @@
 package vizdiztree.survey;
 
 import vizdiztree.answer.*;
-
 import java.util.*;
+import java.io.*;
 
 public class Survey {
     private String title;
@@ -81,15 +81,32 @@ public class Survey {
     //Converts all responses to integers given the hashMap keys
     public ArrayList<ArrayList<Integer>> convertResponses(){
 
-        for(SurveyResponse r: responses){
 
+        for(SurveyResponse r: responses){
             ArrayList<Integer> conR=new ArrayList<>();
             for(String title: r.getResponses()){
-
                 conR.add(keys.get(title));
+
             }
             convertedResponses.add(conR);
         }
+
+        //write convertedResponses to a text file
+
+        try {
+            System.out.println("writing");
+            PrintWriter writer = new PrintWriter("test.txt", "UTF-8");
+            System.out.println(convertedResponses);
+            writer.println(convertedResponses);
+            writer.close();
+        }
+        catch (UnsupportedEncodingException fnfe) {
+            // do something sensible with the exception.
+        }
+        catch (FileNotFoundException fnfe) {
+            // do something sensible with the exception.
+        }
+
         return convertedResponses;
     }
 }
