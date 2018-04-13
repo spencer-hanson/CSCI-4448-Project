@@ -6,7 +6,7 @@ import java.io.*;
 public class SurveyTree {
     public int buildTree() {
         try {
-            ProcessBuilder pb = new ProcessBuilder("python", "decision_tree.py");
+            ProcessBuilder pb = new ProcessBuilder("python", "testing.py");
             Process p = pb.start();
 
             BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
