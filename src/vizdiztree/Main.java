@@ -1,7 +1,9 @@
 package vizdiztree;
 import vizdiztree.answer.*;
 import vizdiztree.survey.*;
+import vizdiztree.surveytree.SurveyTree;
 
+//import supercsv.*;
 import java.util.ArrayList;
 
 public class Main {
@@ -66,12 +68,18 @@ public class Main {
             flag=!flag;
             System.out.println(response.getResponses());
         }
+
         s.createKeys();
         System.out.println(s.getKeys());
 
         System.out.println(s.convertResponses());
 
 
+        SurveyTree st =  new SurveyTree();
+        st.setSurvey(s);
+        st.buildTree();
+        st.writeData(s.convertedResponses);
+        st.writeQuestions();
 
     }
 }
