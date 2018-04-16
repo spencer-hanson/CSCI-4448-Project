@@ -1,5 +1,4 @@
 package vizdiztree.survey;
-
 import vizdiztree.answer.*;
 import java.util.*;
 import java.io.*;
@@ -7,7 +6,7 @@ import java.io.*;
 public class Survey {
     private String title;
     private ArrayList<SurveyResponse> responses= new ArrayList<>();
-    private ArrayList<ArrayList<Integer>> convertedResponses=new ArrayList<>();
+    public ArrayList<ArrayList<Integer>> convertedResponses=new ArrayList<>();
 
     private ArrayList<Question> questions= new ArrayList<>();
     private HashMap<String, Integer> keys= new HashMap<>();
@@ -90,23 +89,7 @@ public class Survey {
             }
             convertedResponses.add(conR);
         }
-
-        //write convertedResponses to a text file
-
-        try {
-            System.out.println("writing");
-            PrintWriter writer = new PrintWriter("test.txt", "UTF-8");
-            System.out.println(convertedResponses);
-            writer.println(convertedResponses);
-            writer.close();
-        }
-        catch (UnsupportedEncodingException fnfe) {
-            // do something sensible with the exception.
-        }
-        catch (FileNotFoundException fnfe) {
-            // do something sensible with the exception.
-        }
-
         return convertedResponses;
     }
+
 }

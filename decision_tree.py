@@ -12,6 +12,11 @@ import math
 
 # parse the data from the csv into a list of lists, each list containing the results of one example
 
+responses = {
+    "yes" : 1,
+    "no" : 0
+}
+
 
 def parse_questions(filename):
     questions = []

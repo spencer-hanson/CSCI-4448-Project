@@ -2,7 +2,8 @@ package vizdiztree.survey;
 
 import java.util.ArrayList;
 
-public class SurveyResponse {
+public class
+SurveyResponse {
     private ArrayList<String> responses= new ArrayList<>();
 
     public void addResponse(String resp) {
