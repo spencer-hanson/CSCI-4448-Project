@@ -7,10 +7,19 @@ import java.io.*;
 
 
 public class SurveyTree {
+    private Survey survey;
+
+    public Survey getSurvey(){
+        return this.survey;
+    }
+    public void setSurvey(Survey s){
+        survey = s;
+    }
 
     public void writeData(ArrayList<ArrayList<Integer>> convertedresponses){
         //write convertedResponses to a text file
         try {
+            System.out.println("hello");
             PrintWriter writer = new PrintWriter("survey_data.txt", "UTF-8");
             writer.println(convertedresponses);
             writer.close();
@@ -22,12 +31,28 @@ public class SurveyTree {
             // do something sensible with the exception.
         }
     }
-//
-//    public void writeQuestions(){
-//        for(Question q: survey.getQuestions()){
-//            System.out.println(q.getTitle());
-//        }
-//    }
+
+    public void writeQuestions() {
+        try {
+            PrintWriter writer = new PrintWriter("question_data.txt", "UTF-8");
+            for (Question q1 : survey.getQuestions()) {
+                System.out.println("Question: " + q1.getTitle());
+
+
+                System.out.print("hi\n");
+
+                writer.append(q1.getTitle()+'\n');
+
+            }
+            writer.close();
+        }
+            catch (UnsupportedEncodingException fnfe) {
+                // do something sensible with the exception.
+            }
+            catch (FileNotFoundException fnfe) {
+                // do something sensible with the exception.
+            }
+        }
 
 
     public void buildTree() {

@@ -9,16 +9,16 @@ import math
 # TODO: Make questions read in from java program
 
 # list of questions that will be asked in decision making process
-questions = [
-    "Do you need you car at the time of loan?",
-    "Duration of the friendship?",
-    "Times friend has been ticketed?",  # answers: 0 times, 1-2 times(some), or 3+ times
-    "Have you driven with said friend before?",
-    "Does your friend text and drive?",
-    "Will your friend pay for gas?"
-]
 
 # parse the data from the csv into a list of lists, each list containing the results of one example
+
+
+def parse_questions(filename):
+    questions = []
+    with open(filename, 'r') as f:
+        for line in f.readlines():
+            questions.append(line.strip())
+    return questions
 
 
 def parse(filename):
@@ -46,6 +46,7 @@ def convert(data):
 
 if __name__ == "__main__":
     newparse = parse("survey_data.txt")
+    new_qs = parse_questions("question_data.txt")
     num_items = math.floor(len(newparse)*.75)  # take 75% of entries for training and 25% for testing
     converted_new = convert(newparse)
 
