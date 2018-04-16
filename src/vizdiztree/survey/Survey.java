@@ -7,7 +7,7 @@ import java.io.*;
 public class Survey {
     private String title;
     private ArrayList<SurveyResponse> responses= new ArrayList<>();
-    private ArrayList<ArrayList<Integer>> convertedResponses=new ArrayList<>();
+    public ArrayList<ArrayList<Integer>> convertedResponses=new ArrayList<>();
 
     private ArrayList<Question> questions= new ArrayList<>();
     private HashMap<String, Integer> keys= new HashMap<>();
