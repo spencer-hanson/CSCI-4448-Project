@@ -1,5 +1,4 @@
 package vizdiztree.surveytree;
-//import org.supercsv.cellprocessor.ift.CellProcessor;
 import vizdiztree.answer.*;
 import vizdiztree.survey.*;
 import java.util.*;
@@ -19,7 +18,6 @@ public class SurveyTree {
     public void writeData(ArrayList<ArrayList<Integer>> convertedresponses){
         //write convertedResponses to a text file
         try {
-            System.out.println("hello");
             PrintWriter writer = new PrintWriter("survey_data.txt", "UTF-8");
             writer.println(convertedresponses);
             writer.close();
@@ -36,11 +34,6 @@ public class SurveyTree {
         try {
             PrintWriter writer = new PrintWriter("question_data.txt", "UTF-8");
             for (Question q1 : survey.getQuestions()) {
-                System.out.println("Question: " + q1.getTitle());
-
-
-                System.out.print("hi\n");
-
                 writer.append(q1.getTitle()+'\n');
 
             }
