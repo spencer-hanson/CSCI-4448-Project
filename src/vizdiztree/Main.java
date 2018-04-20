@@ -78,7 +78,7 @@ public class Main {
         SurveyTree st =  new SurveyTree();
         st.setSurvey(s);
         st.buildTree();
-        st.writeData(s.convertedResponses);
+        st.writeData(s.getConvertedResponses());
         st.writeQuestions();
 
     }
