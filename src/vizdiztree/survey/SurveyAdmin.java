@@ -27,7 +27,6 @@ public class SurveyAdmin {
     }
 
     public SurveyAdmin(String username, String password) throws Exception {
-        this.surveys = new ArrayList<>();
         this.username = username;
         this.password = password;
         this.mongo = new VizDizTreeMongo();
@@ -39,17 +38,38 @@ public class SurveyAdmin {
         if (this.admin == null) {
             throw new SurveyAdminException("Unable to connect with given user/password!");
         }
+
+        this.surveys = new ArrayList<>();
+        ArrayList<Document> surveys = (ArrayList<Document>) admin.get("surveys");
+        if (surveys != null) { // no saved surveys
+            for(Document survey: surveys) {
+                this.surveys.add(Survey.fromBson(survey));
+            }
+        }
     }
 
     // Create a new survey, given just a title
     public Survey addSurvey(String title) {
-        Survey s = new Survey(title);
+        return this.addSurvey(new Survey((title)));
+    }
+
+    public Survey addSurvey(Survey s) {
         this.surveys.add(s);
+        this.syncSurveys();
         return s;
+    }
+
+    private void syncSurveys() {
+        ArrayList<Document> sd = new ArrayList<>();
+        for(Survey s: this.surveys) {
+            sd.add(s.toBson());
+        }
+        this.mongo.getCollection().updateOne(this.filter, new Document("$set", new Document("surveys", sd)));
     }
 
     // Get the list of all the surveys in DB
     public ArrayList<Survey> getSurveys() {
+        this.syncSurveys();
         return this.surveys;
     }
 
@@ -85,6 +105,7 @@ public class SurveyAdmin {
             new SurveyAdmin(name, password);
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }

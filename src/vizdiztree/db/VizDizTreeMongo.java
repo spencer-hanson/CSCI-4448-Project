@@ -22,26 +22,11 @@ public class VizDizTreeMongo {
         return database;
     }
 
-    public void setDatabase(MongoDatabase database) {
-        this.database = database;
-    }
-
     public MongoCollection<Document> getCollection() {
         return collection;
     }
 
-    public void setCollection(MongoCollection<Document> collection) {
-        this.collection = collection;
-    }
-
     public MongoClient getMongoClient() {
-
         return mongoClient;
     }
-
-    public void setMongoClient(MongoClient mongoClient) {
-        this.mongoClient = mongoClient;
-    }
-
-
 }

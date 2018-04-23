@@ -1,9 +1,15 @@
 package vizdiztree.survey;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.util.JSON;
+import org.bson.Document;
 import vizdiztree.answer.*;
+import vizdiztree.db.BsonCompatible;
+
 import java.util.*;
 import java.io.*;
 
-public class Survey {
+public class Survey implements BsonCompatible {
     private String title;
     private ArrayList<SurveyResponse> responses= new ArrayList<>();
     private ArrayList<ArrayList<Integer>> convertedResponses=new ArrayList<>();
@@ -34,6 +40,10 @@ public class Survey {
         questions.add(new Question(_title, lista));
     }
 
+    public void addQuestion(Question q) { questions.add(q); }
+
+    public void addResponse(SurveyResponse sr) { responses.add(sr); }
+
     public ArrayList<SurveyResponse> getResponses() {
         return responses;
     }
@@ -63,6 +73,9 @@ public class Survey {
 
     }
 
+    public void setKeys(HashMap<String, Integer> keys) {
+        this.keys = keys;
+    }
 
     public void createKeys(){
         int count=2;
@@ -94,5 +107,47 @@ public class Survey {
 
     public ArrayList<ArrayList<Integer>> getConvertedResponses() {
         return convertedResponses;
+    }
+
+    public Document toBson() {
+        ArrayList<ArrayList<String>> responses = new ArrayList<>();
+
+        for(SurveyResponse s :  this.responses) {
+            responses.add(s.getResponses());
+        }
+
+        ArrayList<Document> qs = new ArrayList<>();
+        for (Question q : this.questions) {
+            qs.add(q.toBson());
+        }
+
+        Document d = new Document()
+                .append("title", this.title)
+                .append("responses", responses)
+                .append("questions", qs)
+                .append("keys", keys);
+        return d;
+    }
+
+    public static Survey fromBson(Document d) {
+
+        Survey s = new Survey((String)d.get("title"));
+
+        for(Document qd: (ArrayList<Document>) d.get("questions")) {
+            s.addQuestion(Question.fromBson(qd));
+        }
+
+        for(ArrayList<String> rd: (ArrayList<ArrayList<String>>) d.get("responses")) {
+            SurveyResponse sr = new SurveyResponse();
+            for(String rdi : rd) {
+                sr.addResponse(rdi);
+            }
+            s.addResponse(sr);
+        }
+        DBObject keys = (DBObject) JSON.parse(((Document)d.get("keys")).toJson());
+
+        s.setKeys((HashMap<String, Integer>)keys.toMap());
+
+        return s;
     }
 }
