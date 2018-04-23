@@ -1,9 +1,10 @@
+<%@ page import="vizdiztree.survey.SurveyAdmin" %>
+
 <div class="container">
     <h1>Survey Tree</h1>
     <h4>A Decision Tree Visualization and Learning Tool</h4>
 </div>
 
-<%@ page import="vizdiztree.survey.SurveyAdmin" %>
 
 
 <img src="img/logo.png" style="width:200px;height:300px; " class="center">
@@ -44,7 +45,7 @@
     if(username != null) {
         String password = request.getParameter("password");
         if(SurveyAdmin.tryLogin(username, password)) {
-            %> <script type="text/javascript"> window.location.href = "surveyeditor.jsp?username=<%= username %>";</script> <%
+            %> <script type="text/javascript"> window.location.href = "surveyeditor.jsp?username=<%= username %>&password=<%= password %>";</script> <%
         } else {
             %><center><b>Invalid Login!</b></center> <%
         }
