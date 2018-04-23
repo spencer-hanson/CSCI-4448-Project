@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Main {
     public static String getHello() { return "Hello JSP"; }
 
-    public static void main(String[] args) {
+    public static void test() {
         System.out.println("Hello World!");
 
         //Test Answer class methods
@@ -80,6 +80,19 @@ public class Main {
         st.buildTree();
         st.writeData(s.getConvertedResponses());
         st.writeQuestions();
+    }
+
+    public static void main(String[] args) {
+       //test();
+        if (SurveyAdmin.tryLogin("admin", "password")) {
+            try {
+                SurveyAdmin admin = new SurveyAdmin("admin", "password");
+                System.out.println("Valid Login");
+            } catch(Exception e) {}
+        } else {
+            System.out.println("Invalid login");
+        }
+
 
     }
 }
