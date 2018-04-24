@@ -6,20 +6,28 @@
         // Logged in
             try {
                 SurveyAdmin s = new SurveyAdmin(username, password);
+                int done=0;
                 // code here
                 %>
                 <head>
                     <script type="text/javascript">
+                        var Questioncount=2;
+                        var AnswerCount=3;
                         function addTextArea(){
+
                             var div = document.getElementById('div_quotes[]');
-                            div.innerHTML += "<input name='new_quote[]' value='Enter Answer' />";
+                            div.innerHTML += "<input name='Answer" +AnswerCount.toString()+ "' value='Enter Answer' />";
                            //div.innerHTML += "\n<br />";
+                           AnswerCount=AnswerCount+1;
                         }
                         function addTextArea1(){
+                            AnswerCount=AnswerCount+1;
                             var div = document.getElementById('div_quotes1');
-                            div.innerHTML += "<div class=\"container\"><form><fieldset><legend><form><input size='40' type='text' value='Enter Question Title Here'></form></div><div>Answers:<br><input size='15' type='text' name='Answer' value='Enter Answer'><input size='15' type='text' name='Answer' value='Enter Answer'><div id='div_quotes[]'></div><input type='button' value='Add Answer'  onClick='addTextArea();'></div></legend></fieldset></form></div>";
-                           //div.innerHTML += "\n<br />";
+                            div.innerHTML += "<div ><form action='surveyeditor.jsp'><fieldset><legend><form><input size='40' type='text' value='Enter Question Title Here'></form></div></legend><div>Answers:<br><input size='15' type='text' name='Answer"+AnswerCount+"' value='Enter Answer'><div id='div_quotes[]'></div><input type='button' value='Add Answer'  onClick='addTextArea();'></div><input type='submit' value='Save' ></fieldset></form></div>";
+                           div.innerHTML += "\n<br />";
+                            QuestionCount=QuestionCount+1;
                         }
+
                     </script>
                 </head>
                 <div style=" text-align: right;">
@@ -32,19 +40,20 @@
 
                 <!--div for entering survey title -->
                 <div class="container">
-                    <form>
+                    <form action="surveyeditor.jsp">
                         <input size="64" type="text" name="SurveyTitle" value="Enter Survey Title Here">
+                        <input type="submit" value="Save" >
                     </form>
                 </div>
 
                 <div >
-                    <form>
+                    <form action="surveyeditor.jsp">
                         <fieldset>
                             <legend>
                                 <!--div for entering question title -->
                                 <div>
                                     <form>
-                                        <input size="40" type="text" name="Question" value="Enter Question Title Here">
+                                        <input size="40" type="text" name="Question1" value="Enter Question Title Here">
                                     </form>
                                 </div>
 
@@ -58,7 +67,7 @@
                                 <div id="div_quotes[]"></div>
                                 <input type="button" value="Add Answer"  onClick="addTextArea();">
                             </div>
-
+                           <input type="submit" value="Save" >
                         </fieldset>
                     </form>
                 </div>
@@ -77,7 +86,7 @@
                 <!--div for save and cancel button -->
                 <div class="container">
                     <form>
-                        <input type="submit" value="Save">
+                        <input type="submit" value="Save" onClick="done();">
                         <input type="button" value="Cancel">
                     </form>
                 </div>
@@ -100,6 +109,11 @@
 
 
         <%
+            String surveyTitle = request.getParameter("SurveyTitle");
+            if(surveyTitle != null) {
+                    s.addSurvey(surveyTitle);
+             }
+
             } catch (Exception e) { e.printStackTrace(); }
     } else {
         // Not logged in
