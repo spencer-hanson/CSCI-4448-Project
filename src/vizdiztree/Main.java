@@ -88,7 +88,8 @@ public class Main {
 
         SurveyTree st =  new SurveyTree();
         st.setSurvey(s);
-        st.buildTree();
+        try { st.buildTree(); } catch (Exception e) { e.printStackTrace();}
+
         st.writeData(s.getConvertedResponses());
         st.writeQuestions();
     }
@@ -115,7 +116,7 @@ public class Main {
 
     public static void main(String[] args) {
       //testClasses();
-        testMongo();
+       // testMongo();
 
 
     }

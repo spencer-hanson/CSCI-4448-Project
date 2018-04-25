@@ -65,7 +65,7 @@ public class Survey implements BsonCompatible {
             for (Question q : questions) {
                 Random rand = new Random();
                 ArrayList<Answer> alist = q.getAnswers();
-                int index = rand.nextInt(alist.size());
+                int index = rand.nextInt(alist.size()+1);
                 Answer a = alist.get(index);
                 SurveyResponse newR= responses.get(i);
                 newR.addResponse(a.getTitle());

@@ -6,7 +6,7 @@
     String password = request.getParameter("password");
     String surveyTitle= request.getParameter("surveyTitle");
 
-    if(username != null && password != null && surveyTitle!=null) {
+    if(username != null && password != null ) {
         // Logged in
             try {
                 SurveyAdmin user = new SurveyAdmin(username, password);
@@ -35,6 +35,7 @@
                   <form action="takesurvey.jsp">
                         <input type="hidden" name="username" value="<%= username %>" />
                         <input type="hidden" name="password" value="<%= password %>" />
+                        <input type="hidden" name="surveyTitle" value="<%= surveyTitle%>" />
                   <ul><%
                 for(SurveyResponse r1: r){
                     %>
@@ -95,6 +96,7 @@
             index=index+1;
         }
         s.setResponses(r);
+         user.addSurvey(s);
          %> <script type="text/javascript"> window.location.href = "mainmenu.jsp?username=<%= username %>&password=<%= password %>";</script> <%
         }
 

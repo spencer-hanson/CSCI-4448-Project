@@ -48,23 +48,15 @@ public class SurveyTree {
         }
 
 
-    public Exception buildTree() {
-        Exception ret = null;
-        try {
-            ProcessBuilder pb = new ProcessBuilder("python", "decision_tree.py");
-            Process p = pb.start();
+    public void buildTree() throws Exception {
+        ProcessBuilder pb = new ProcessBuilder("python3", "decision_tree.py");
+        Process p = pb.start();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            int ret2 = new Integer(in.readLine()).intValue();
-            System.out.println(ret2);
-            System.out.println("Made it to try");
+//        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+//        int ret2 = new Integer(in.readLine()).intValue();
+//        System.out.println(ret2);
+//        System.out.println("Made it to try");
 
-        } catch (Exception e) {
-            System.out.println("Made it to catch");
-            ret = e;
-            System.out.println(e);
-        }
-        return ret;
     }
 
 

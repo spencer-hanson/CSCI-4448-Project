@@ -25,7 +25,7 @@
                         function addTextArea1(){
                             AnswerCount=AnswerCount+1;
                             var div = document.getElementById('div_quotes1');
-                            div.innerHTML += "<div ><fieldset><legend><input size='40' type='text' value='Enter Question Title Here'></div></legend><div>Answers:<br><input size='15' type='text' name='Answer"+AnswerCount+"' value='Enter Answer'><div id='div_quotes[]'></div><input type='button' value='Add Answer'  onClick='addTextArea();'></div></fieldset></div>";
+                            div.innerHTML += "<div ><fieldset><legend><input size='40' type='text' value='Enter Question Title Here'></div></legend><div>Answers:<br><input size='15' type='text' name='Answer"+AnswerCount+"' value='Enter Answer'><input size='15' type='text' name='Answer"+(AnswerCount+1)+"' value='Enter Answer'><div id='div_quotes[]'></div><input type='button' value='Add Answer'  onClick='addTextArea();'></div></fieldset></div>";
                            div.innerHTML += "\n<br />";
                             QuestionCount=QuestionCount+1;
                         }
@@ -67,7 +67,7 @@
                             <!--div for adding answers -->
                             <div>
                                 Answers:<br>
-                                <input size="15" type="text" name="Answer" value="Enter Answer">
+                                <div><input size="15" type="text" name="Answer" value="Enter Answer"></div>
                                 <input size="15" type="text" name="Answer1" value="Enter Answer">
                                 <div id="div_quotes[]"></div>
                                 <input type="button" value="Add Answer"  onClick="addTextArea();">
@@ -118,13 +118,29 @@
             String Question1 = request.getParameter("Question1");
             String Answer1 = request.getParameter("Answer");
             String Answer2 = request.getParameter("Answer1");
+            String Answer3 = request.getParameter("Answer2");
+            String Question2 = request.getParameter("Question2");
+                        String Answer4 = request.getParameter("Answer3");
+                        String Answer5 = request.getParameter("Answer4");
+
             if(surveyTitle != null && Question1!=null && Answer1!=null && Answer2!=null) {
-                   Survey survey= s.addSurvey(surveyTitle);
+                   Survey survey= new Survey(surveyTitle);
                    ArrayList<String> lista = new ArrayList<>();
                    lista.add(Answer1);
                    lista.add(Answer2);
+                   lista.add(Answer3);
                    survey.addQuestion(Question1, lista);
-                    %> <script type="text/javascript"> window.location.href = "mainmenu.jsp?username=<%= username %>&password=<%= password %>";</script> <%
+
+                   ArrayList<String> lista1 = new ArrayList<>();
+                    lista.add(Answer4);
+                   lista.add(Answer5);
+
+                   survey.addQuestion(Question2, lista1);
+
+
+                   s.addSurvey(survey);
+
+
              }
 
             } catch (Exception e) { e.printStackTrace(); }

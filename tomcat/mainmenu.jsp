@@ -84,11 +84,11 @@
                 s.convertResponses();
                 SurveyTree st =  new SurveyTree();
                 st.setSurvey(s);
-                Exception r=st.buildTree();
+                st.buildTree();
                 st.writeData(s.getConvertedResponses());
                 st.writeQuestions();
-                %><%=r%>
-                <script type="text/javascript"> window.location.href = "tree.jsp?username=<%= username %>&password=<%= password %>";</script>
+                %>
+                     <script type="text/javascript"> window.location.href = "img/tree.pdf";</script>
                 <%
             }
 

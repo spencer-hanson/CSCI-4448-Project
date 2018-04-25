@@ -59,7 +59,7 @@ public class SurveyAdmin {
         return s;
     }
 
-    private void syncSurveys() {
+    public void syncSurveys() {
         ArrayList<Document> sd = new ArrayList<>();
         for(Survey s: this.surveys) {
             sd.add(s.toBson());
@@ -125,9 +125,10 @@ public class SurveyAdmin {
     }
 
     public Survey findSurvey(String title){
-        for(Survey s: surveys) {
-            if(s.getTitle().equals(title))
-                return s;
+        for (int i=0;i<surveys.size();i++) {
+            if(surveys.get(i).getTitle().equals(title)) {
+                return surveys.remove(i);
+            }
         }
         return null;
     }
