@@ -38,7 +38,11 @@
 
            <% ArrayList<SurveyResponse> r=s.takeSurvey();
                  int counter=1;
-                  %><ul><%
+                  %>
+                  <form action="takesurvey.jsp">
+                        <input type="hidden" name="username" value="<%= username %>" />
+                        <input type="hidden" name="password" value="<%= password %>" />
+                  <ul><%
                 for(SurveyResponse r1: r){
                     %>
 
@@ -53,28 +57,20 @@
                  %> </li>
                 <!--div for Yes No responses -->
                                    <div class="Container">
-                                       <form>
-                                           <input type="radio" name="response" value="Yes" checked> Yes<br>
-                                           <input type="radio" name="response" value="No"> No<br>
 
-                                       </form>
+                                           <input type="radio" name="response<%=counter%>" value="Yes" checked> Yes<br>
+                                           <input type="radio" name="response<%=counter%>" value="No"> No<br>
+
+
                                    </div> <%
                     counter=counter+1;
                   }%>
                 </ul>
-                <!--div: enumerate each question with a random answer -->
 
 
+                  <input type="submit" value="Submit">
 
-
-
-                <!--div for submit and continue button -->
-                <div class="container">
-                    <form>
-                        <input type="submit" value="Submit">
-
-                    </form>
-                </div>
+              </form>
 </div>
                 <style>
                     .container {
@@ -85,6 +81,20 @@
                     }
                 </style>
        <%
+       //I know its crappy; need to fix
+       String res1 = request.getParameter("response1");
+
+       String res2 = request.getParameter("response2");
+       String res3 = request.getParameter("response3");
+       String res4 = request.getParameter("response4");
+       String res5 = request.getParameter("response5");
+       String res6 = request.getParameter("response6");
+       String res7 = request.getParameter("response7");
+       String res8 = request.getParameter("response8");
+       String res9 = request.getParameter("response9");
+       String res10 = request.getParameter("response10");
+
+
         } catch (Exception e) { e.printStackTrace(); }
     } else {
         // Not logged in
