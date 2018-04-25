@@ -48,6 +48,10 @@ public class Survey implements BsonCompatible {
         return responses;
     }
 
+    public void setResponses(ArrayList<SurveyResponse> r){
+        responses=r;
+    }
+
     public HashMap<String, Integer> getKeys() {
         return keys;
     }

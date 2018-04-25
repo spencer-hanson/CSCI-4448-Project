@@ -81,19 +81,29 @@
                     }
                 </style>
        <%
+
        //I know its crappy; need to fix
-       String res1 = request.getParameter("response1");
+       ArrayList<String> resp=new ArrayList<>();
+       resp.add(request.getParameter("response1"));
+        resp.add(request.getParameter("response2"));
+        resp.add(request.getParameter("response3"));
+        resp.add(request.getParameter("response4"));
+        resp.add(request.getParameter("response5"));
+        resp.add(request.getParameter("response6"));
+        resp.add(request.getParameter("response7"));
+        resp.add(request.getParameter("response8"));
+        resp.add(request.getParameter("response9"));
+        resp.add(request.getParameter("response10"));
 
-       String res2 = request.getParameter("response2");
-       String res3 = request.getParameter("response3");
-       String res4 = request.getParameter("response4");
-       String res5 = request.getParameter("response5");
-       String res6 = request.getParameter("response6");
-       String res7 = request.getParameter("response7");
-       String res8 = request.getParameter("response8");
-       String res9 = request.getParameter("response9");
-       String res10 = request.getParameter("response10");
-
+        int index=0;
+        if(resp.get(index)!=null){
+        for(SurveyResponse ri: r){
+            ri.addResponse(resp.get(index));
+            index=index+1;
+        }
+        s.setResponses(r);
+         %> <script type="text/javascript"> window.location.href = "mainmenu.jsp?username=<%= username %>&password=<%= password %>";</script> <%
+        }
 
         } catch (Exception e) { e.printStackTrace(); }
     } else {
