@@ -1,7 +1,12 @@
+<%@ page import="vizdiztree.survey.SurveyAdmin" %>
+
 <div class="container">
     <h1>Survey Tree</h1>
     <h4>A Decision Tree Visualization and Learning Tool</h4>
 </div>
+
+
+
 <img src="img/logo.png" style="width:200px;height:300px; " class="center">
 <div class="container">
     <form>
@@ -12,18 +17,19 @@
 
             <!--div for username and password boxes-->
             <div>
-                <form>
-                    Username:<br>
+                <form action="index.jsp">
+                    Username:<br />
                     <input type="text" name="username"><br>
-                    Password:<br>
-                    <input type="password" name="psw">
+                    Password:<br />
+                    <input type="password" name="password">
+                    <br />
+                    <input type="submit" value="Login">
                 </form>
             </div>
 
             <!--div for login and sign up buttons -->
             <div>
 
-                <input type="submit" value="Login">
 
                 <form action="signup.jsp">
                     <input type="submit" value="Sign Up">
@@ -33,6 +39,21 @@
         </fieldset>
     </form>
 </div>
+
+<%
+    String username = request.getParameter("username");
+    if(username != null) {
+        String password = request.getParameter("password");
+        if(SurveyAdmin.tryLogin(username, password)) {
+            %> <script type="text/javascript"> window.location.href = "surveyeditor.jsp?username=<%= username %>&password=<%= password %>";</script> <%
+        } else {
+            %><center><b>Invalid Login!</b></center> <%
+        }
+    } else {
+        // Not logged in
+    }
+%>
+
 <style>
     .container {
         text-align: center;
