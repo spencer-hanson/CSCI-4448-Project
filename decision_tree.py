@@ -74,11 +74,11 @@ if __name__ == "__main__":
 
 
     # use graphviz to create a graph representing the decision tree
-    dot_data = tree.export_graphviz(clf, out_file=None,
-                                    feature_names=new_qs,
-                                    class_names=list(responses.keys()),
-                                    filled=True, rounded=True,
-                                    special_characters=True)
-    graph = graphviz.Source(dot_data)
-    graph.render("asdff")
+    #dot_data = tree.export_graphviz(clf, out_file=None,
+    #                                feature_names=new_qs,
+    #                                class_names=list(responses.keys()),
+    #                                filled=True, rounded=True,
+    #                                special_characters=True)
+    #graph = graphviz.Source(dot_data)
+    #graph.render("asdff")
 

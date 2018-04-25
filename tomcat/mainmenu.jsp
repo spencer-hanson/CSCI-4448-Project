@@ -1,5 +1,6 @@
 <%@ page import="vizdiztree.survey.*" %>
 <%@ page import="vizdiztree.answer.*" %>
+<%@ page import="vizdiztree.surveytree.*" %>
 <%@ page import="java.util.*" %>
 <%
     String username = request.getParameter("username");
@@ -76,6 +77,20 @@
                 }
             </style>
 <%
+         String surveyTitle= request.getParameter("surveyTitle");
+          if(surveyTitle!=null){
+               Survey s= user.findSurvey(surveyTitle);
+                s.createKeys();
+                s.convertResponses();
+                SurveyTree st =  new SurveyTree();
+                st.setSurvey(s);
+                Exception r=st.buildTree();
+                st.writeData(s.getConvertedResponses());
+                st.writeQuestions();
+                %><%=r%><%
+            }
+
+
             } catch (Exception e) { e.printStackTrace(); }
     } else {
         // Not logged in
