@@ -124,15 +124,7 @@
                    lista.add(Answer1);
                    lista.add(Answer2);
                    survey.addQuestion(Question1, lista);
-                     %> <%=surveyTitle%><%
-                   for(Question q1: survey.getQuestions()){
-                       String title= q1.getTitle();
-                     %> <%=title%><%
-                     for(Answer a: q1.getAnswers()){
-                        String ans= a.getTitle();
-                          %><%=ans%><%
-                                       }
-                   }
+                    %> <script type="text/javascript"> window.location.href = "takesurvey.jsp?username=<%= username %>&password=<%= password %>";</script> <%
              }
 
             } catch (Exception e) { e.printStackTrace(); }
