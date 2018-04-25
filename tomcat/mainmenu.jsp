@@ -87,7 +87,9 @@
                 Exception r=st.buildTree();
                 st.writeData(s.getConvertedResponses());
                 st.writeQuestions();
-                %><%=r%><%
+                %><%=r%>
+                <script type="text/javascript"> window.location.href = "tree.jsp?username=<%= username %>&password=<%= password %>";</script>
+                <%
             }
 
 
