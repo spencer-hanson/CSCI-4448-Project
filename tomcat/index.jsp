@@ -45,7 +45,7 @@
     if(username != null) {
         String password = request.getParameter("password");
         if(SurveyAdmin.tryLogin(username, password)) {
-            %> <script type="text/javascript"> window.location.href = "surveyeditor.jsp?username=<%= username %>&password=<%= password %>";</script> <%
+            %> <script type="text/javascript"> window.location.href = "mainmenu.jsp?username=<%= username %>&password=<%= password %>";</script> <%
         } else {
             %><center><b>Invalid Login!</b></center> <%
         }

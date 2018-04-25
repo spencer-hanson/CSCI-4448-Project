@@ -124,7 +124,7 @@
                    lista.add(Answer1);
                    lista.add(Answer2);
                    survey.addQuestion(Question1, lista);
-                    %> <script type="text/javascript"> window.location.href = "takesurvey.jsp?username=<%= username %>&password=<%= password %>";</script> <%
+                    %> <script type="text/javascript"> window.location.href = "mainmenu.jsp?username=<%= username %>&password=<%= password %>";</script> <%
              }
 
             } catch (Exception e) { e.printStackTrace(); }
