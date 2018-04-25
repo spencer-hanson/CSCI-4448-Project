@@ -4,24 +4,17 @@
 <%
     String username = request.getParameter("username");
     String password = request.getParameter("password");
-    if(username != null && password != null) {
+    String surveyTitle= request.getParameter("surveyTitle");
+
+    if(username != null && password != null && surveyTitle!=null) {
         // Logged in
             try {
                 SurveyAdmin user = new SurveyAdmin(username, password);
-                Survey s= new Survey("Should I Buy this Car?");
-
-                ArrayList<String> ans1= new ArrayList<>();
-                ans1.add("<2000");
-                ans1.add("2000-4000");
-                ans1.add(">4000");
-                Question q= new Question("Car Price?",ans1);
-                s.addQuestion(q);
-                ArrayList<String> ans2= new ArrayList<>();
-                ans2.add("Yes");
-                ans2.add("No");
-                 s.addQuestion("Is it new?", ans2);
+                Survey s= user.findSurvey(surveyTitle);
                 // code here
+
                 %>
+
                 <!--div for title of survey -->
                 <div class="container">
 

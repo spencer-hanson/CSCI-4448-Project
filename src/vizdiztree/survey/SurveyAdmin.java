@@ -124,4 +124,12 @@ public class SurveyAdmin {
 
     }
 
+    public Survey findSurvey(String title){
+        for(Survey s: surveys) {
+            if(s.getTitle().equals(title))
+                return s;
+        }
+        return null;
+    }
+
 }
