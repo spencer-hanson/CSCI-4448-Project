@@ -1,4 +1,6 @@
-<%@ page import="vizdiztree.survey.SurveyAdmin" %>
+<%@ page import="vizdiztree.survey.*" %>
+<%@ page import="vizdiztree.answer.*" %>
+<%@ page import="java.util.*" %>
 <%
     String username = request.getParameter("username");
     String password = request.getParameter("password");
@@ -23,7 +25,7 @@
                         function addTextArea1(){
                             AnswerCount=AnswerCount+1;
                             var div = document.getElementById('div_quotes1');
-                            div.innerHTML += "<div ><form action='surveyeditor.jsp'><fieldset><legend><form><input size='40' type='text' value='Enter Question Title Here'></form></div></legend><div>Answers:<br><input size='15' type='text' name='Answer"+AnswerCount+"' value='Enter Answer'><div id='div_quotes[]'></div><input type='button' value='Add Answer'  onClick='addTextArea();'></div><input type='submit' value='Save' ></fieldset></form></div>";
+                            div.innerHTML += "<div ><fieldset><legend><input size='40' type='text' value='Enter Question Title Here'></div></legend><div>Answers:<br><input size='15' type='text' name='Answer"+AnswerCount+"' value='Enter Answer'><div id='div_quotes[]'></div><input type='button' value='Add Answer'  onClick='addTextArea();'></div></fieldset></div>";
                            div.innerHTML += "\n<br />";
                             QuestionCount=QuestionCount+1;
                         }
@@ -40,21 +42,24 @@
 
                 <!--div for entering survey title -->
                 <div class="container">
+
                     <form action="surveyeditor.jsp">
+                        <input type="hidden" name="username" value="<%= username %>" />
+                        <input type="hidden" name="password" value="<%= password %>" />
                         <input size="64" type="text" name="SurveyTitle" value="Enter Survey Title Here">
-                        <input type="submit" value="Save" >
-                    </form>
+
+
                 </div>
 
                 <div >
-                    <form action="surveyeditor.jsp">
+
                         <fieldset>
                             <legend>
                                 <!--div for entering question title -->
                                 <div>
-                                    <form>
+
                                         <input size="40" type="text" name="Question1" value="Enter Question Title Here">
-                                    </form>
+
                                 </div>
 
                             </legend>
@@ -67,26 +72,26 @@
                                 <div id="div_quotes[]"></div>
                                 <input type="button" value="Add Answer"  onClick="addTextArea();">
                             </div>
-                           <input type="submit" value="Save" >
+
                         </fieldset>
-                    </form>
+
                 </div>
 
                 <!--div for adding more questions -->
                 <div id="div_quotes1"></div>
 
                 <div class="container">
-                    <form>
+
                         <fieldset>
                             <input type="button" value="Add Question" onClick="addTextArea1();">
                         </fieldset>
-                    </form>
+
                 </div>
 
                 <!--div for save and cancel button -->
                 <div class="container">
-                    <form>
-                        <input type="submit" value="Save" onClick="done();">
+
+                        <input type="submit" value="Save" >
                         <input type="button" value="Cancel">
                     </form>
                 </div>
@@ -110,8 +115,24 @@
 
         <%
             String surveyTitle = request.getParameter("SurveyTitle");
-            if(surveyTitle != null) {
-                    s.addSurvey(surveyTitle);
+            String Question1 = request.getParameter("Question1");
+            String Answer1 = request.getParameter("Answer");
+            String Answer2 = request.getParameter("Answer1");
+            if(surveyTitle != null && Question1!=null && Answer1!=null && Answer2!=null) {
+                   Survey survey= s.addSurvey(surveyTitle);
+                   ArrayList<String> lista = new ArrayList<>();
+                   lista.add(Answer1);
+                   lista.add(Answer2);
+                   survey.addQuestion(Question1, lista);
+                     %> <%=surveyTitle%><%
+                   for(Question q1: survey.getQuestions()){
+                       String title= q1.getTitle();
+                     %> <%=title%><%
+                     for(Answer a: q1.getAnswers()){
+                        String ans= a.getTitle();
+                          %><%=ans%><%
+                                       }
+                   }
              }
 
             } catch (Exception e) { e.printStackTrace(); }
