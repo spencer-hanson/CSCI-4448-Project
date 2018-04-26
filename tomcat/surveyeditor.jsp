@@ -139,7 +139,7 @@
 
 
                    s.addSurvey(survey);
-
+                   %> <script type="text/javascript"> window.location.href = "mainmenu.jsp?username=<%= username %>&password=<%= password %>";</script> <%
 
              }
 

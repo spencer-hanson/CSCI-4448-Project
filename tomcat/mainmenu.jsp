@@ -2,6 +2,8 @@
 <%@ page import="vizdiztree.answer.*" %>
 <%@ page import="vizdiztree.surveytree.*" %>
 <%@ page import="java.util.*" %>
+<%@ page import="java.lang.*" %>
+
 <%
     String username = request.getParameter("username");
     String password = request.getParameter("password");
@@ -87,6 +89,7 @@
                 st.buildTree();
                 st.writeData(s.getConvertedResponses());
                 st.writeQuestions();
+                Thread.sleep(6000);
                 %>
                      <script type="text/javascript"> window.location.href = "img/tree.pdf";</script>
                 <%
