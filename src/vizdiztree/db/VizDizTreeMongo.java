@@ -12,8 +12,9 @@ public class VizDizTreeMongo {
     private MongoCollection<Document> collection;
 
     public VizDizTreeMongo() {
+
         // Use ./ngrok tcp 27017
-        this.mongoClient = new MongoClient("0.tcp.ngrok.io",15379);
+        this.mongoClient = new MongoClient("0.tcp.ngrok.io",14394);
         this.database = this.mongoClient.getDatabase("vizdiz");
         this.collection = this.database.getCollection("admins");
     }
